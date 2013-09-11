@@ -76,8 +76,6 @@ class _QueryFilter(defaultdict):
                     raise TypeError("Invalid %sing direction: %s" % (name, direction))
                 self[operation] += tuple(((key, direction),))
         except Exception:
-            import traceback
-            traceback.print_exc()
             raise TypeError("Invalid list of keys for %s: %s" % (name, repr(index_list)))
 
     def __repr__(self):
