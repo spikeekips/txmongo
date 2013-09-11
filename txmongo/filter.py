@@ -72,10 +72,12 @@ class _QueryFilter(defaultdict):
             for key, direction in index_list:
                 if not isinstance(key, types.StringTypes):
                     raise TypeError("Invalid %sing key: %s" % (name, repr(key)))
-                if direction not in (1, -1, "2d", "geoHaystack"):
+                if direction not in (1, -1, "2d", "geoHaystack", 'text', ):
                     raise TypeError("Invalid %sing direction: %s" % (name, direction))
                 self[operation] += tuple(((key, direction),))
         except Exception:
+            import traceback
+            traceback.print_exc()
             raise TypeError("Invalid list of keys for %s: %s" % (name, repr(index_list)))
 
     def __repr__(self):
